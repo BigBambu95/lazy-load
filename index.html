@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        body, html {
+            margin: 0;
+            padding: 0;
+        }
+        img {
+            display: block;
+            width: 550px;
+            height: 400px;
+            margin-bottom: 75px;
+        }
+    </style>
+</head>
+<body>
+    
+
+    <img src="1.gif" realsrc="1.jpg">
+    <img src="1.gif" alt="" realsrc="2.jpg">
+    <img src="1.gif" alt="" realsrc="3.jpg">
+    <img src="1.gif" alt="" realsrc="4.jpg">
+    <img src="1.gif"  alt="" realsrc="3.jpg">
+    <img src="1.gif" alt="" realsrc="4.jpg">
+    <img src="1.gif" alt="" realsrc="3.jpg">
+    <img src="1.gif" alt="" realsrc="4.jpg">
+    <img src="1.gif" alt="" realsrc="3.jpg">
+    <img src="1.gif" alt="" realsrc="4.jpg">
+    <img src="1.gif" alt="" realsrc="3.jpg">
+    <img src="1.gif"  alt="" realsrc="4.jpg">
+    <img src="1.gif" alt="" realsrc="3.jpg">
+    <img src="1.gif" alt="" realsrc="4.jpg">
+
+    <script>
+        let images = document.querySelectorAll('.img');
+        
+        function isVisible(elem) {
+            let coords = elem.getBoundingClientRect(); 
+            let windowHeight = document.documentElement.clientHeight;
+
+            let topVisible = coords.top > 0 && coords.top < windowHeight;
+            let bottomVisible = coords.bottom > 0 && coords.bottom < windowHeight;
+            console.log(coords);
+            return topVisible || bottomVisible;
+        }
+
+        function showVisible(elem) {
+            elem.forEach((elem) => {
+                if(isVisible(elem)) {
+                let realsrc = elem.getAttribute('realsrc');
+                        elem.setAttribute('src', realsrc);
+                        console.log('change src');
+                }
+            });
+
+        }
+        
+
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('load');
+            showVisible(images);
+
+        });
+
+        window.addEventListener('scroll', () => {
+            showVisible(images);
+        });
+
+    </script>
+</body>
+</html>
